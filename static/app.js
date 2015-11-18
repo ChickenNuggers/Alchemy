@@ -5,3 +5,4 @@ app.config(function($mdThemingProvider) {
 		.primaryPalette('blue')
 		.accentPalette('pink');
 });
+

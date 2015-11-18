@@ -1,9 +1,18 @@
-md-toolbar {
+/*md-toolbar {
 	box-shadow: none;
-}
+}*/
 div[role="main"] h3 {
 	font-size: 115%;
 }
+
+div[role="main"] md-content {
+	background-color: #eee;
+}
+
+md-card {
+  background-color: #fff;
+}
+
 p {
 	font-size: 95%;
 	text-align: justify;
