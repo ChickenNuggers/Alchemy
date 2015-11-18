@@ -1,6 +1,6 @@
 # Alchemy
-Web framework designed in Python using Flask and Python
-modules and a function wrapper for content generation.
+Web application designed in Python using Flask and Python
+modules and a set of functions for content generation.
 
 ## Usage
 `./main.py`

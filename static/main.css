@@ -1,3 +1,10 @@
-ng-md-icon svg {
-	fill: white;
+md-toolbar {
+	box-shadow: none;
+}
+div[role="main"] h3 {
+	font-size: 115%;
+}
+p {
+	font-size: 95%;
+	text-align: justify;
 }
