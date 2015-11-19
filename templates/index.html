@@ -6,14 +6,18 @@
 		<title>Alchemy</title>
 	</head>
 	<body layout="row">
-		<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+		<!--
+	  	Array of modules
+		Sidenav not needed
+	  	-->
+		<!--md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
 			<md-toolbar class="md-default-theme md-hue-2">
 				<h1 class="md-toolbar-tools">Modules</h1>
 			</md-toolbar>
 			<md-content layout-padding>
 				<md-progress-circular md-mode="indeterminate"></md-progress-circular>
 			</md-content>
-		</md-sidenav>
+		</md-sidenav-->
 		<div layout="column" class="relative" layout-fill role="main">
 			<md-toolbar class="md-theme-indigo md-whiteframe-1dp">
 				<div class="md-toolbar-tools">
@@ -28,16 +32,67 @@
 				<ui-view layout="column" layout-fill layout-padding>
 					<md-card flex-gt-sm="90" flex-gt-md="80">
 						<md-card-content>
-							<h2 class="md-title">Hello World!</h2>
-							<fieldset id="module_1" class="standard" ng-controller="module_1">
-								<legend>Module 1</legend>
+							<fieldset class="standard" ng-controller="introduction"><!-- controller = s/[^A-Z]/_/.lower() -->
+								<legend>Introduction</legend>
+								
 								<p>
-									Introductory module. Has fun things.
-									<md-button ng-click="openToast()">
-										A toast!
-									</md-button><br />
-									<span>CPU Usage: 80%</span><md-progress-linear md-mode="determinate" value="80" />
+									Introductory Module, with included documentation over the other modules
 								</p>
+
+								<fieldset class="standard">
+									<legend>Buttons</legend>
+									<md-button class="md-raised md-primary" ng-click="openToast()">
+										<b>Button</b>
+									</md-button>
+									<h4>Python</h4>
+									<p role="code"><code>
+										your_button = Alchemy.Button(type=Alchemy.Button.primary &amp; Alchemy.Button.raised, action=your_javascript)<br />
+										Alchemy.append(your_button)
+									</code></p>
+									<h4>Python JavaScript Generation Example</h4>
+									<p role="code"><code>
+										your_javascript = Alchemy.Toast.Simple("Hello World", timeout=3000)
+									</code></p>
+								</fieldset>
+								
+								<fieldset class="standard">
+									<legend>Checkboxes</legend>
+									<md-checkbox aria-label="Your Label">
+										Your Label
+									</md-checkbox>
+									<h4>Python</h4>
+									<p role="code"><code>
+										your_checkbox = Alchemy.Checkbox(type=Alchemy.Button.Primary, on=your_javascript, off=your_javascript)
+										Alchemy.append(your_checkbox)
+									</code></p>
+								</fieldset>
+
+								<fieldset class="standard">
+									<legend>Alerts</legend>
+									<md-button class="md-primary md-raised" ng-click="showAlert($event)">
+										<b>Show Alert</b>
+									</md-button>
+									<h4>PyJS</h4>
+									<p role="code"><code>
+										your_alert = Alchemy.Alert.Simple("You can put a description here", title="Title")
+									</code></p>
+									<h4>Notice</h4>
+									<p>
+										Recent versions (as of Nov. 19, 2015) have broken versions of the Alert dialog.
+										Many of the features are not implemented.
+										Because of this, many features are not added into the Alchemy interface
+									</p>
+								</fieldset>
+
+								<fieldset class="standard">
+									<legend>Percentage Bar</legend>
+									<h4 role="label">CPU Usage: 80%</h4>
+									<md-progress-linear md-mode="determinate" value=80></md-progress-linear>
+									<h4>Python</h4>
+									<p role="code"><code>
+										your_percentage_bar = Alchemy.PercentageBar(80, Label="CPU Usage")
+									</p>
+								</fieldset>
 							</fieldset>
 						</md-card-content>
 					</md-card>

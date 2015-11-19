@@ -10,7 +10,22 @@ div[role="main"] md-content {
 }
 
 md-card {
-  background-color: #fff;
+	background-color: #fff;
+}
+
+p[role="code"] {
+	background-color: #eee;
+	padding: 3px;
+	line-height: 1.2;
+}
+
+md-button, .md-button {
+	font-weight: bold;
+}
+
+h4[role="label"] {
+	margin-top: 5px;
+	margin-bottom: 0px;
 }
 
 p {
