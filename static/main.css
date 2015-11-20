@@ -1,39 +1,23 @@
-/*md-toolbar {
-	box-shadow: none;
-}*/
-div[role="main"] h3 {
-	font-size: 115%;
-}
-
-div[role="main"] md-content {
-	background-color: #eee;
-}
-
-md-card {
-	background-color: #fff;
-}
-
-p[role="code"] {
-	background-color: #eee;
-	padding: 3px;
-	line-height: 1.2;
-}
-
-md-button, .md-button {
-	font-weight: bold;
-}
-
 h4[role="label"] {
 	margin-top: 15px;
 	margin-bottom: 0px;
 }
 
+.mdl-card {
+	width: 100%;
+	padding: 15px;
+}
+
+.mdl-grid {
+	max-width: 75%;
+}
+
 fieldset {
+	border: 2px solid;
 	padding: 25px;
 	padding-top: 0px;
 }
 
 p {
-	font-size: 95%;
 	text-align: justify;
 }
