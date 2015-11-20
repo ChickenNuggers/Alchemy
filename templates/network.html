@@ -1,18 +1,45 @@
 <p>Open network connections and opened ports, IPv4 and IPv6</p>
 
-<md-list>
-	<md-subheader class="md-no-sticky">Active Connections</md-subheader>
-	{% for socket in sockets %}
-	<div class="md-list-item-text">
-		<!-- ::TODO:: Find a way to make tables -->
-		<h3>To: <small>{{ socket.raddr[0] }}:{{ socket.raddr[1] }}</small>, Family: <small>{{ socket.family }}</small>, PID: <small>{{ socket.pid }}</small></h3>
-	</div>
-	{% endfor %}
-	<md-subheader class="md-no-sticky">Listening Connections</md-subheader>
-	{% for socket in listening %}
-	<div class="md-list-item-text">
-		<!-- ::TODO:: see above -->
-		<h3>Listening on: <small>{{ socket.laddr[0] }}:{{ socket.laddr[1] }}</small>, Family: <small>{{ socket.family }}</small>, PID: <small>{{ socket.pid }}</small></h3>
-	</div>
-	{% endfor %}
-</md-list>
+<h4 role="label">Active Connections</h4>
+<table class="mdl-data-table">
+	<thead>
+		<tr>
+			<th class="mdl-data-table__cell--non-numeric">Address</th>
+			<th>Port</th>
+			<th>Socket Family</th>
+			<th>PID</th>
+		</tr>
+	</thead>
+	<tbody>
+		{%- for socket in sockets %}
+		<tr>
+			<td class="mdl-data-table__cell--non-numeric">{{ socket.raddr[0] }}</td>
+			<td>{{ socket.raddr[1] }}</td>
+			<td>{{ socket.family }}</td>
+			<td>{{ socket.pid }}</td>
+		</tr>
+		{%- endfor %}
+	</tbody>
+</table>
+
+<h4 role="label">Listening Connections</h4>
+<table class="mdl-data-table">
+	<thead>
+		<tr>
+			<th class="mdl-data-table__cell--non-numeric">Address</th>
+			<th>Port</th>
+			<th>Socket Family</th>
+			<th>PID</th>
+		</tr>
+	</thead>
+	<tbody>
+		{%- for socket in listening %}
+		<tr>
+			<td class="mdl-data-table__cell--non-numeric">{{ socket.laddr[0] }}</td>
+			<td>{{ socket.laddr[1] }}</td>
+			<td>{{ socket.family }}</td>
+			<td>{{ socket.pid }}</td>
+		</tr>
+		{%- endfor %}
+	</tbody>
+</table>

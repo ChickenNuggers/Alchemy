@@ -4,6 +4,7 @@ try:
     import json
     import os
     import re
+    import collections
 except ImportError:
     print("Did you remember to run `pip install -r requirements.txt`?")
     raise SystemExit
@@ -12,10 +13,11 @@ app = flask.Flask(__name__)
 app.jinja_env.autoescape = False
 
 import modules
-for module in os.listdir('modules'):
+_module_list = sorted([item[:-3] for item in os.listdir('modules') if item[0] != "." and item[0] != "_"])
+for module in _module_list:
     if module[0] != "." and module[0] != "_":
-        __import__('modules.' + module[:-3], globals(), locals())
-enabled_modules = [getattr(modules, module) for module in dir(modules) if module[:2] != "__" and getattr(getattr(modules, module), "render")]
+        __import__('modules.' + module, globals(), locals())
+enabled_modules = [getattr(modules, module) for module in _module_list if getattr(getattr(modules, module), "render")]
 
 _module_pattern = re.compile(r'modules\.(.+)')
 

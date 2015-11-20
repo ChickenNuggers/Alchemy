@@ -9,15 +9,18 @@ h4[role="label"] {
 }
 
 .mdl-grid {
-	max-width: 75%;
+	width: 75%;
+	max-width: 750px;
 }
 
 fieldset {
-	border: 2px solid;
+	border: 1px solid;
 	padding: 25px;
 	padding-top: 0px;
 }
 
 p {
+	margin-bottom: 5px;
+	margin-top: 5px;
 	text-align: justify;
 }
