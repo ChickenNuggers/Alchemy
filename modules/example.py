@@ -12,5 +12,5 @@ def _getnums():
 
 def render():
     numbers = _getnums()
-    with open('templates/test.html') as template:
+    with open('templates/example.html') as template:
         return jinja2.Template(template.read()).render(data=numbers)

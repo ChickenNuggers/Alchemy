@@ -14,7 +14,7 @@ app.jinja_env.autoescape = False
 import modules
 for module in os.listdir('modules'):
     if module[0] != "." and module[0] != "_":
-        __import__('modules.' + module[:-3])
+        __import__('modules.' + module[:-3], globals(), locals())
 enabled_modules = [getattr(modules, module) for module in dir(modules) if module[:2] != "__" and getattr(getattr(modules, module), "render")]
 
 _module_pattern = re.compile(r'modules\.(.+)')

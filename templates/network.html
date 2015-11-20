@@ -1,0 +1,18 @@
+<p>Open network connections and opened ports, IPv4 and IPv6</p>
+
+<md-list>
+	<md-subheader class="md-no-sticky">Active Connections</md-subheader>
+	{% for socket in sockets %}
+	<div class="md-list-item-text">
+		<!-- ::TODO:: Find a way to make tables -->
+		<h3>To: <small>{{ socket.raddr[0] }}:{{ socket.raddr[1] }}</small>, Family: <small>{{ socket.family }}</small>, PID: <small>{{ socket.pid }}</small></h3>
+	</div>
+	{% endfor %}
+	<md-subheader class="md-no-sticky">Listening Connections</md-subheader>
+	{% for socket in listening %}
+	<div class="md-list-item-text">
+		<!-- ::TODO:: see above -->
+		<h3>Listening on: <small>{{ socket.laddr[0] }}:{{ socket.laddr[1] }}</small>, Family: <small>{{ socket.family }}</small>, PID: <small>{{ socket.pid }}</small></h3>
+	</div>
+	{% endfor %}
+</md-list>
