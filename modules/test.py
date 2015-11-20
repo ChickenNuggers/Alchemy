@@ -1,17 +1,16 @@
-import Alchemy
-import flask
+import jinja2
 import psutil
 
-psutil.cpu_percent() # Initializer
+psutil.cpu_percent() # Initialize percent calculator
 
-def getnums():
-    items = []
-    items.append(('CPU Usage', psutil.cpu_percent(interval=1)))
-    items.append(('Memory', psutil.virtual_memory().percent))
+def _getnums():
+    numbers = []
+    numbers.append(('CPU Usage', psutil.cpu_percent(interval=1)))
+    numbers.append(('Memory', psutil.virtual_memory().percent))
 
-    return dict(items)
+    return dict(numbers)
 
 def render():
-    numbers = getnums()
-    template = flask.render_template('test.html', **numbers)
-
+    numbers = _getnums()
+    with open('templates/test.html') as template:
+        return jinja2.Template(template.read()).render(data=numbers)

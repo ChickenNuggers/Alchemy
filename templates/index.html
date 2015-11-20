@@ -32,7 +32,7 @@
 				<ui-view layout="column" layout-fill layout-padding>
 					<md-card flex-gt-sm="90" flex-gt-md="80">
 						<md-card-content>
-							{% for module, template in module_data %}
+							{% for module, template in module_data.items() %}
 							<fieldset class="standard" ng-controller="{{ module }}">
 								<legend>{{ module }}</legend>
 								{{ template }}
