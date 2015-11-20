@@ -12,17 +12,17 @@ app = flask.Flask(__name__)
 import modules
 for module in os.listdir('modules'):
     if module[0] != "." and module[0] != "_":
-        print(module)
         __import__('modules.' + module[:-3])
-        print(getattr(modules, module[:-3]).getnums())
+enabled_modules = [getattr(modules, module) for module in dir(modules) if module[:2] != "__" and getattr(getattr(modules, module), "render")]
 
 @app.route("/")
 def master():
     elements = {
-            "settings": {
-                "title": "Alchemy"
-                }
-            }
+        "settings": {
+            "title": "Alchemy"
+        },
+        "module_data": {}
+    }
     return flask.render_template("index.html", **elements)
 
 if __name__ == "__main__":
