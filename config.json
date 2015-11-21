@@ -1,5 +1,6 @@
 {
 	"host": "0.0.0.0",
 	"port": 8888,
-	"use_reloader": true
+	"use_reloader": true,
+	"whitelist": ["192.168"]
 }
