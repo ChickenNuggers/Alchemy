@@ -33,14 +33,14 @@ rejected feature requests:
 
 A list of features to be implemented:
 
- * [ ] Modules
- * [ ] Content generation class
- * [ ] Monitoring of...
-  * [ ] Memory
-  * [ ] CPU Usage...
-    - [ ] currently
-    - [ ] over time
-  * [ ] Listening sockets
+ * [X] Modules
+ * ~~[ ] Content generation class~~
+ * [X] Monitoring of...
+  * [X] Memory
+  * [X] CPU Usage...
+    - [X] currently
+    - ~~[ ] over time~~
+  * [X] Listening sockets
 
 ### ... via pull request:
 
