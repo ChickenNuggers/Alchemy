@@ -57,12 +57,12 @@ rejected feature requests:
 A list of features to be implemented:
 
  * [X] Modules
- * ~~[ ] Content generation class~~
+ * [ ] ~~Content generation class~~
  * [X] Monitoring of...
   * [X] Memory
   * [X] CPU Usage...
     - [X] currently
-    - ~~[ ] over time~~
+    - [ ] ~~over time~~
   * [X] Listening sockets
 
 ### ... via pull request:
