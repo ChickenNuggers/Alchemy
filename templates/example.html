@@ -16,3 +16,24 @@ Introductory module with a short description of what the module does, along with
 	</div>
 </div>
 {% endfor %}
+
+<br />
+
+<p role="code"><code>
+import jinja2<br />
+import psutil<br />
+<br />
+psutil.cpu_percent() # Initialize percent calculator<br />
+<br />
+def _getnums():<br />
+&emsp;numbers = []<br />
+&emsp;numbers.append(('CPU Usage', psutil.cpu_percent(interval=1)))<br />
+&emsp;numbers.append(('Memory', psutil.virtual_memory().percent))<br />
+<br />
+&emsp;return dict(numbers)<br />
+<br />
+def render():<br />
+&emsp;numbers = _getnums()<br />
+&emsp;with open('templates/example.html') as template:<br />
+&emsp;&emsp;return jinja2.Template(template.read()).render(data=numbers)<br />
+</code></p>

@@ -37,3 +37,9 @@ p {
 	margin-top: 5px;
 	text-align: justify;
 }
+
+p[role="code"] {
+	line-height: 1.1;
+	padding: 5px;
+	background-color: #eee;
+}
