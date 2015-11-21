@@ -5,6 +5,29 @@ modules and a set of functions for content generation.
 ## Usage
 `./main.py`
 
+## Building modules
+
+### ... with Python
+
+Every Python module loaded from the `modules` directory
+should have a .render() function to load modules in the
+main page; however, modules also should have an interface
+to the `app` Flask application and be able to hook their
+own custom pages with the `app` class. This means that,
+if users wanted, they could theoretically create their
+own module extensions if they wanted, but this is not
+entirely recommended. To avoid collisions, modules should
+be named by their file and extensions named by the file,
+a `/`, and the extension file name.
+
+### ... with HTML
+
+HTML templates can be created preferably using Jinja2
+while iterating a repeatable format. This creates a
+consistent format for the modules, and the modules
+should be contained on a single piece of paper, inside
+of the fieldset they are created on.
+
 ## Contributing
 
 ### ... via bug reports:
