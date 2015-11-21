@@ -3,6 +3,10 @@ h4[role="label"] {
 	margin-bottom: 0px;
 }
 
+table {
+	width: 100%;
+}
+
 .mdl-card {
 	width: 100%;
 	padding: 15px;
@@ -42,4 +46,8 @@ p[role="code"] {
 	line-height: 1.1;
 	padding: 5px;
 	background-color: #eee;
+}
+
+footer.mdl-mini-footer {
+	padding: 16px;
 }
