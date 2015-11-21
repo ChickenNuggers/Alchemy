@@ -6,23 +6,28 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 		<link rel="stylesheet" href="/static/main.css">
-		<title>{{ settings.title }}</title>
+		<title>Error {{ error }}</title>
 	</head>
 	<body>
 		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
 			<header class="mdl-layout__header">
 				<div class="mdl-layout__header-row">
-					<span class="mdl-layout-title">{{ settings.title }} // Dashboard</span>
+					<span class="mdl-layout-title">Error {{ error }} // {{ message }}</span>
 				</div>
 			</header>
 			<div class="ribbon mdl-color--primary mdl-shadow--2dp"></div>
 			<main class="mdl-layout__content">
-				<div class="mdl-grid">
-					<div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
-						<h4>{{ error }} <small>{{ message }}</small></h4>
+				<div class="mdl-grid" style="width: 500px;">
+					<div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp" style="padding: 25px; padding-top: 0px;">
+						<h4 class="mdl-card__title" style="margin-top: 0px; margin-bottom: 0px;">{{ error }} // {{ message }}</h4>
 						{% if reason %}
-						<p>{{ reason }}</p>
+						<div class="mdl-card__supporting-text">
+							<p>{{ reason }}</p>
+						</div>
 						{% endif %}
+						<div class="mdl-card__actions">
+							<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="window.history.back()">Go back</button>
+						</div>
 					</div>
 				</div>
 			</main>

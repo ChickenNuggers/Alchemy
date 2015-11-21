@@ -39,9 +39,11 @@ if 'whitelist' in config.keys():
             flask.abort(403)
 
 @app.errorhandler(403)
-def access_error():
-    #res = render_template('error.html', {'error': '403', 'message': 'Access Denied', 'reason': 'Blacklisted IP'})
-    return 'no', 403
+def access_error(e):
+    try:
+        return flask.render_template('error.html', error = 403, message = 'Access denied', reason = 'Non-whitelisted IP address'), 403
+    except Exception as e:
+        print(e)
 
 @app.route("/")
 def master():
