@@ -2,13 +2,22 @@
 Introductory module with a short description of what the module does, along with an example module that displays processor usage and memory usage.
 </p>
 
+<style>
+iframe {
+	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	width: 100%;
+}
+</style>
+
 {% for label, value in data.items() %}
 <h4 role="label">{{ label }}: {{ value }}%</h4>
 <div class="mdl-progress mdl-progress__progress-accent">
 	<style>
-	.mdl-progress {
-		width: 100%;
-	}
+.mdl-progress {
+	width: 100%;
+}
 	</style>
 	<div class="mdl-progress mdl-js-progress">
 		<div class="progressbar bar bar1" style="width: {{ value }}%;"></div>
@@ -19,21 +28,153 @@ Introductory module with a short description of what the module does, along with
 
 <br />
 
-<p role="code"><code>
-import jinja2<br />
-import psutil<br />
-<br />
-psutil.cpu_percent() # Initialize percent calculator<br />
-<br />
-def _getnums():<br />
-&emsp;numbers = []<br />
-&emsp;numbers.append(('CPU Usage', psutil.cpu_percent(interval=1)))<br />
-&emsp;numbers.append(('Memory', psutil.virtual_memory().percent))<br />
-<br />
-&emsp;return dict(numbers)<br />
-<br />
-def render():<br />
-&emsp;numbers = _getnums()<br />
-&emsp;with open('templates/example.html') as template:<br />
-&emsp;&emsp;return jinja2.Template(template.read()).render(data=numbers)<br />
-</code></p>
+<style>
+pre {
+	padding: 5px;
+}
+pre .hll { background-color: #eeeebb }
+pre  { background: #f0f0f0; }
+pre .c { color: #60a0b0; font-style: italic } /* Comment */
+pre .err { border: 1px solid #FF0000 } /* Error */
+pre .k { color: #007020;  } /* Keyword */
+pre .o { color: #666666 } /* Operator */
+pre .cm { color: #60a0b0; font-style: italic } /* Comment.Multiline */
+pre .cp { color: #007020 } /* Comment.Preproc */
+pre .c1 { color: #60a0b0; font-style: italic } /* Comment.Single */
+pre .cs { color: #60a0b0; background-color: #fff0f0 } /* Comment.Special */
+pre .gd { color: #A00000 } /* Generic.Deleted */
+pre .ge { font-style: italic } /* Generic.Emph */
+pre .gr { color: #FF0000 } /* Generic.Error */
+pre .gh { color: #000080;  } /* Generic.Heading */
+pre .gi { color: #00A000 } /* Generic.Inserted */
+pre .go { color: #888888 } /* Generic.Output */
+pre .gp { color: #c65d09;  } /* Generic.Prompt */
+pre .gs {  } /* Generic.Strong */
+pre .gu { color: #800080;  } /* Generic.Subheading */
+pre .gt { color: #0044DD } /* Generic.Traceback */
+pre .kc { color: #007020;  } /* Keyword.Constant */
+pre .kd { color: #007020;  } /* Keyword.Declaration */
+pre .kn { color: #007020;  } /* Keyword.Namespace */
+pre .kp { color: #007020 } /* Keyword.Pseudo */
+pre .kr { color: #007020;  } /* Keyword.Reserved */
+pre .kt { color: #902000 } /* Keyword.Type */
+pre .m { color: #40a070 } /* Literal.Number */
+pre .s { color: #4070a0 } /* Literal.String */
+pre .na { color: #4070a0 } /* Name.Attribute */
+pre .nb { color: #007020 } /* Name.Builtin */
+pre .nc { color: #0e84b5;  } /* Name.Class */
+pre .no { color: #60add5 } /* Name.Constant */
+pre .nd { color: #555555;  } /* Name.Decorator */
+pre .ni { color: #d55537;  } /* Name.Entity */
+pre .ne { color: #007020 } /* Name.Exception */
+pre .nf { color: #06287e } /* Name.Function */
+pre .nl { color: #002070;  } /* Name.Label */
+pre .nn { color: #0e84b5;  } /* Name.Namespace */
+pre .nt { color: #062873;  } /* Name.Tag */
+pre .nv { color: #bb60d5 } /* Name.Variable */
+pre .ow { color: #007020;  } /* Operator.Word */
+pre .w { color: #bbbbbb } /* Text.Whitespace */
+pre .mb { color: #40a070 } /* Literal.Number.Bin */
+pre .mf { color: #40a070 } /* Literal.Number.Float */
+pre .mh { color: #40a070 } /* Literal.Number.Hex */
+pre .mi { color: #40a070 } /* Literal.Number.Integer */
+pre .mo { color: #40a070 } /* Literal.Number.Oct */
+pre .sb { color: #4070a0 } /* Literal.String.Backtick */
+pre .sc { color: #4070a0 } /* Literal.String.Char */
+pre .sd { color: #4070a0; font-style: italic } /* Literal.String.Doc */
+pre .s2 { color: #4070a0 } /* Literal.String.Double */
+pre .se { color: #4070a0;  } /* Literal.String.Escape */
+pre .sh { color: #4070a0 } /* Literal.String.Heredoc */
+pre .si { color: #70a0d0; font-style: italic } /* Literal.String.Interpol */
+pre .sx { color: #c65d09 } /* Literal.String.Other */
+pre .sr { color: #235388 } /* Literal.String.Regex */
+pre .s1 { color: #4070a0 } /* Literal.String.Single */
+pre .ss { color: #517918 } /* Literal.String.Symbol */
+pre .bp { color: #007020 } /* Name.Builtin.Pseudo */
+pre .vc { color: #bb60d5 } /* Name.Variable.Class */
+pre .vg { color: #bb60d5 } /* Name.Variable.Global */
+pre .vi { color: #bb60d5 } /* Name.Variable.Instance */
+pre .il { color: #40a070 } /* Literal.Number.Integer.Long */.syntax pre .hll { background-color: #ffffcc }
+.syntax pre  { background: #f8f8f8; }
+.syntax pre .c { color: #408080; font-style: italic } /* Comment */
+.syntax pre .err { border: 1px solid #FF0000 } /* Error */
+.syntax pre .k { color: #008000;  } /* Keyword */
+.syntax pre .o { color: #666666 } /* Operator */
+.syntax pre .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.syntax pre .cp { color: #BC7A00 } /* Comment.Preproc */
+.syntax pre .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.syntax pre .cs { color: #408080; font-style: italic } /* Comment.Special */
+.syntax pre .gd { color: #A00000 } /* Generic.Deleted */
+.syntax pre .ge { font-style: italic } /* Generic.Emph */
+.syntax pre .gr { color: #FF0000 } /* Generic.Error */
+.syntax pre .gh { color: #000080;  } /* Generic.Heading */
+.syntax pre .gi { color: #00A000 } /* Generic.Inserted */
+.syntax pre .go { color: #888888 } /* Generic.Output */
+.syntax pre .gp { color: #000080;  } /* Generic.Prompt */
+.syntax pre .gs {  } /* Generic.Strong */
+.syntax pre .gu { color: #800080;  } /* Generic.Subheading */
+.syntax pre .gt { color: #0044DD } /* Generic.Traceback */
+.syntax pre .kc { color: #008000;  } /* Keyword.Constant */
+.syntax pre .kd { color: #008000;  } /* Keyword.Declaration */
+.syntax pre .kn { color: #008000;  } /* Keyword.Namespace */
+.syntax pre .kp { color: #008000 } /* Keyword.Pseudo */
+.syntax pre .kr { color: #008000;  } /* Keyword.Reserved */
+.syntax pre .kt { color: #B00040 } /* Keyword.Type */
+.syntax pre .m { color: #666666 } /* Literal.Number */
+.syntax pre .s { color: #BA2121 } /* Literal.String */
+.syntax pre .na { color: #7D9029 } /* Name.Attribute */
+.syntax pre .nb { color: #008000 } /* Name.Builtin */
+.syntax pre .nc { color: #0000FF;  } /* Name.Class */
+.syntax pre .no { color: #880000 } /* Name.Constant */
+.syntax pre .nd { color: #AA22FF } /* Name.Decorator */
+.syntax pre .ni { color: #999999;  } /* Name.Entity */
+.syntax pre .ne { color: #D2413A;  } /* Name.Exception */
+.syntax pre .nf { color: #0000FF } /* Name.Function */
+.syntax pre .nl { color: #A0A000 } /* Name.Label */
+.syntax pre .nn { color: #0000FF;  } /* Name.Namespace */
+.syntax pre .nt { color: #008000;  } /* Name.Tag */
+.syntax pre .nv { color: #19177C } /* Name.Variable */
+.syntax pre .ow { color: #AA22FF;  } /* Operator.Word */
+.syntax pre .w { color: #bbbbbb } /* Text.Whitespace */
+.syntax pre .mb { color: #666666 } /* Literal.Number.Bin */
+.syntax pre .mf { color: #666666 } /* Literal.Number.Float */
+.syntax pre .mh { color: #666666 } /* Literal.Number.Hex */
+.syntax pre .mi { color: #666666 } /* Literal.Number.Integer */
+.syntax pre .mo { color: #666666 } /* Literal.Number.Oct */
+.syntax pre .sb { color: #BA2121 } /* Literal.String.Backtick */
+.syntax pre .sc { color: #BA2121 } /* Literal.String.Char */
+.syntax pre .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.syntax pre .s2 { color: #BA2121 } /* Literal.String.Double */
+.syntax pre .se { color: #BB6622;  } /* Literal.String.Escape */
+.syntax pre .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.syntax pre .si { color: #BB6688;  } /* Literal.String.Interpol */
+.syntax pre .sx { color: #008000 } /* Literal.String.Other */
+.syntax pre .sr { color: #BB6688 } /* Literal.String.Regex */
+.syntax pre .s1 { color: #BA2121 } /* Literal.String.Single */
+.syntax pre .ss { color: #19177C } /* Literal.String.Symbol */
+.syntax pre .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.syntax pre .vc { color: #19177C } /* Name.Variable.Class */
+.syntax pre .vg { color: #19177C } /* Name.Variable.Global */
+.syntax pre .vi { color: #19177C } /* Name.Variable.Instance */
+.syntax pre .il { color: #666666 } /* Literal.Number.Integer.Long */
+</style>
+
+<div class="mdl-shadow--4dp">
+	<div class="syntax"><pre><span class="kn">import</span> <span class="nn">jinja2</span>
+	<span class="kn">import</span> <span class="nn">psutil</span>
+
+	<span class="n">psutil</span><span class="o">.</span><span class="n">cpu_percent</span><span class="p">()</span> <span class="c"># Initialize percent calculator</span>
+
+<span class="k">def</span> <span class="nf">_getnums</span><span class="p">():</span>
+    <span class="n">numbers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">numbers</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">'CPU Usage'</span><span class="p">,</span> <span class="n">psutil</span><span class="o">.</span><span class="n">cpu_percent</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span>
+    <span class="n">numbers</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">'Memory'</span><span class="p">,</span> <span class="n">psutil</span><span class="o">.</span><span class="n">virtual_memory</span><span class="p">()</span><span class="o">.</span><span class="n">percent</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">render</span><span class="p">():</span>
+    <span class="n">numbers</span> <span class="o">=</span> <span class="n">_getnums</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'templates/example.html'</span><span class="p">)</span> <span class="k">as</span> <span class="n">template</span><span class="p">:</span>
+	<span class="k">return</span> <span class="n">jinja2</span><span class="o">.</span><span class="n">Template</span><span class="p">(</span><span class="n">template</span><span class="o">.</span><span class="n">read</span><span class="p">())</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">numbers</span><span class="p">)</span></pre></div>
+
+</div>
