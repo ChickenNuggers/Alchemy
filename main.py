@@ -4,7 +4,6 @@ try:
     import json
     import os
     import re
-    import collections
 except ImportError:
     print("Did you remember to run `pip install -r requirements.txt`?")
     raise SystemExit
