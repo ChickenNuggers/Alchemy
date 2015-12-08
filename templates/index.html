@@ -19,6 +19,15 @@
 			<main class="mdl-layout__content">
 				<div class="mdl-grid">
 					<div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+					{% if not su and not nowarn %}
+					<p>Alchemy is not running as superuser. Unless
+					specified in config.json with a boolean for a
+					field "escalate", Alchemy will not attempt to
+					escalate to superuser. This means that some of
+					the modules might be missing data. <b>To remove
+					this message, either run Alchemy as a superuser
+					or enable the "nowarn" config option.</b></p>
+					{% endif %}
 					{% for module, template in module_data.items() %}
 					<fieldset>
 						<legend>{{ module }}</legend>

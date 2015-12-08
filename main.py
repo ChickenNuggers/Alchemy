@@ -4,12 +4,24 @@ try:
     import json
     import os
     import re
+    import posix
+    import sys
 except ImportError:
     print("Did you remember to run `pip install -r requirements.txt`?")
     raise SystemExit
 
 with open("config.json") as conffile:
     config = json.loads(conffile.read())
+
+if posix.getuid() != 0 and config.get('escalate') and "-escalated" not in sys.argv:
+    print("Escalating")
+    posix.execv('/usr/bin/sudo', ['/usr/bin/sudo', '/usr/bin/env', 'python', sys.argv[0], "-escalated"])
+
+if posix.getuid() == 0:
+    print("Running with superuser privileges")
+    su = True
+else:
+    su = False
 
 app = flask.Flask(__name__)
 app.jinja_env.autoescape = False
@@ -50,6 +62,8 @@ def master():
         "settings": {
             "title": "Alchemy"
         },
+        "su": su,
+        "nowarn": config.get('nowarn'),
         "module_data": {}
     }
     for module in enabled_modules:
