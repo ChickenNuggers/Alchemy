@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Alchemy by ChickenNuggers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Alchemy</h1>
+      <h2 class="project-tagline">A combination of Flask, psutil, and amazing programming skills.</h2>
+      <a href="https://github.com/ChickenNuggers/Alchemy" class="btn">View on GitHub</a>
+      <a href="https://github.com/ChickenNuggers/Alchemy/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/ChickenNuggers/Alchemy/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="alchemy" class="anchor" href="#alchemy" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alchemy</h1>
+
+<p>Web application designed in Python using Flask and Python
+modules and a set of functions for content generation.</p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p><code>./main.py</code></p>
+
+<h2>
+<a id="building-modules" class="anchor" href="#building-modules" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building modules</h2>
+
+<h3>
+<a id="-with-python" class="anchor" href="#-with-python" aria-hidden="true"><span class="octicon octicon-link"></span></a>... with Python</h3>
+
+<p>Every Python module loaded from the <code>modules</code> directory
+should have a .render() function to load modules in the
+main page; however, modules also should have an interface
+to the <code>app</code> Flask application and be able to hook their
+own custom pages with the <code>app</code> class. This means that,
+if users wanted, they could theoretically create their
+own module extensions if they wanted, but this is not
+entirely recommended. To avoid collisions, modules should
+be named by their file and extensions named by the file,
+a <code>/</code>, and the extension file name.</p>
+
+<h3>
+<a id="-with-html" class="anchor" href="#-with-html" aria-hidden="true"><span class="octicon octicon-link"></span></a>... with HTML</h3>
+
+<p>HTML templates can be created preferably using Jinja2
+while iterating a repeatable format. This creates a
+consistent format for the modules, and the modules
+should be contained on a single piece of paper, inside
+of the fieldset they are created on.</p>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<h3>
+<a id="-via-bug-reports" class="anchor" href="#-via-bug-reports" aria-hidden="true"><span class="octicon octicon-link"></span></a>... via bug reports:</h3>
+
+<p>Bug reports are openly invited, so long as there isn't
+already an issue. <strong>If your issue is closed without
+warning</strong>, it is likely there is already an issue report
+and I don't like cluttering up my mailbox with "Closed
+due to duplicate report." If you have any questions
+about submitting bugs, feel free to <a href="mailto:vandor2012@gmail.com">drop me an E-Mail</a>.</p>
+
+<h3>
+<a id="-via-feature-requests" class="anchor" href="#-via-feature-requests" aria-hidden="true"><span class="octicon octicon-link"></span></a>... via feature requests:</h3>
+
+<p>Feature requests are welcome and can be made in an issue
+starting with "[Feature]" - unlike bug reports which
+should just openly state the problem. The feature should
+be explained into detail. Below is a list of already
+rejected feature requests:</p>
+
+<ul>
+<li>Using something other than a Material Design framework</li>
+<li>Using something other than Flask</li>
+<li>Using an entirely different language
+
+<ul>
+<li>View my alternative development project <a href="https://github.com/carbonsrv/diamond">here</a>.</li>
+</ul>
+</li>
+</ul>
+
+<p>A list of features to be implemented:</p>
+
+<ul>
+<li>[X] Modules</li>
+<li>[ ] <del>Content generation class</del>
+</li>
+<li>[X] Monitoring of...
+
+<ul>
+<li>[X] Memory</li>
+<li>[X] CPU Usage...
+
+<ul>
+<li>[X] currently</li>
+<li>[ ] <del>over time</del>
+</li>
+</ul>
+</li>
+<li>[X] Listening sockets</li>
+</ul>
+</li>
+</ul>
+
+<h3>
+<a id="-via-pull-request" class="anchor" href="#-via-pull-request" aria-hidden="true"><span class="octicon octicon-link"></span></a>... via pull request:</h3>
+
+<p>Pull requests will be welcome to the project after
+December 17th, as that is when the final project
+is due for the reason behind this project.</p>
+
+<p>I'm lazy and don't feel like making a lot of things
+myself, or keeping everything all optimized, so if
+anyone feels like implementing something... Feel
+freer than an American with a bald eagle.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/ChickenNuggers/Alchemy">Alchemy</a> is maintained by <a href="https://github.com/ChickenNuggers">ChickenNuggers</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
