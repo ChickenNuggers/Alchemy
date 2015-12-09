@@ -30,6 +30,20 @@ modules and a set of functions for content generation.</p>
 
 <p><code>./main.py</code></p>
 
+<p>Starting the program with systemd is possible as it doesn't
+detach itself from the terminal. However, if you were to
+run the program manually, you might experience inconsistencies
+between root user running the program and regular user. To fix
+this, start the program via <code>./main.py -escalate</code> or add in an
+<code>"escalate"</code> field, set to <code>true</code>, in the <code>config.json</code>
+configuration file.</p>
+
+<p>Please make sure to at least check out <code>config.json</code> before
+running the program. You can include a field <code>"escalate": true</code>
+to automatically escalate the program to superuser when starting
+or change options you don't think look up to par with what you
+would rather use.</p>
+
 <h2>
 <a id="building-modules" class="anchor" href="#building-modules" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building modules</h2>
 
