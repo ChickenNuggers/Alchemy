@@ -5,6 +5,20 @@ modules and a set of functions for content generation.
 ## Usage
 `./main.py`
 
+Starting the program with systemd is possible as it doesn't
+detach itself from the terminal. However, if you were to
+run the program manually, you might experience inconsistencies
+between root user running the program and regular user. To fix
+this, start the program via `./main.py -escalate` or add in an
+`"escalate"` field, set to `true`, in the `config.json`
+configuration file.
+
+Please make sure to at least check out `config.json` before
+running the program. You can include a field `"escalate": true`
+to automatically escalate the program to superuser when starting
+or change options you don't think look up to par with what you
+would rather use.
+
 ## Building modules
 
 ### ... with Python
