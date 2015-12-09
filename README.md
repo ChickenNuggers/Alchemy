@@ -48,9 +48,9 @@ should just openly state the problem. The feature should
 be explained into detail. Below is a list of already
 rejected feature requests:
 
- * Using something other than Angular Material
+ * Using something other than a Material Design framework
  * Using something other than Flask
- * Using an entirely different webpage
+ * Using an entirely different language
   * View my alternative development project [here](
   https://github.com/carbonsrv/diamond).
 
