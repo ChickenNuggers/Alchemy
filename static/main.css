@@ -3,6 +3,12 @@ h4[role="label"] {
 	margin-bottom: 0px;
 }
 
+.mdl-card {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	min-height: 0px;
+}
+
 table {
 	width: 100%;
 }

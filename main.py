@@ -13,14 +13,20 @@ except ImportError:
 with open("config.json") as conffile:
     config = json.loads(conffile.read())
 
-if posix.getuid() != 0 and config.get('escalate') and "-escalated" not in sys.argv:
-    print("Escalating")
-    posix.execv('/usr/bin/sudo', ['/usr/bin/sudo', '/usr/bin/env', 'python', sys.argv[0], "-escalated"])
+for item in [item for item in sys.argv if item[0] == "-"]:
+    if "=" in item:
+        key, value = re.match('^(.+)=(.+)$', item)
+        config[key] = value
+    else:
+        config[item[1:]] = True
+
+if posix.getuid() != 0 and config.get('escalate'):
+    posix.execv('/usr/bin/sudo', ['/usr/bin/sudo', '/usr/bin/env', 'python', sys.argv[0]])
 
 if posix.getuid() == 0:
-    print("Running with superuser privileges")
     su = True
 else:
+    print(" * No sudo permissions")
     su = False
 
 app = flask.Flask(__name__)
