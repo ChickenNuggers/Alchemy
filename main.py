@@ -15,8 +15,11 @@ with open("config.json") as conffile:
 
 for item in [item for item in sys.argv if item[0] == "-"]:
     if "=" in item:
-        key, value = re.match('^(.+)=(.+)$', item)
-        config[key] = value
+        groups = re.match('^(.+)=(.+)$', item[1:]).groups()
+        try:
+            config[groups[0]] = int(groups[1])
+        except:
+            config[groups[0]] = groups[1]
     else:
         config[item[1:]] = True
 
