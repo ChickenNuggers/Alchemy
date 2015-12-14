@@ -13,7 +13,7 @@
 	<tbody>
 		{%- for socket in sockets %}
 		<tr>
-			<td class="mdl-data-table__cell--non-numeric">{{ socket.raddr[0] }}</td>
+			<td class="mdl-data-table__cell--non-numeric"><b>{{ socket.raddr[0] }}</b></td>
 			<td>{{ socket.raddr[1] }}</td>
 			<td>{{ socket.family }}</td>
 			<td>{{ socket.pid }}</td>
@@ -35,7 +35,7 @@
 	<tbody>
 		{%- for socket in listening %}
 		<tr>
-			<td class="mdl-data-table__cell--non-numeric">{{ socket.laddr[0] }}</td>
+			<td class="mdl-data-table__cell--non-numeric"><b>{{ socket.laddr[0] }}</b></td>
 			<td>{{ socket.laddr[1] }}</td>
 			<td>{{ socket.family }}</td>
 			<td>{{ socket.pid }}</td>
