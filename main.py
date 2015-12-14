@@ -83,4 +83,4 @@ _acceptable_settings = ['host', 'port', 'use_reloader']
 
 if __name__ == "__main__":
     werkzeug_settings = [(key, value) for key, value in config.items() if key in _acceptable_settings]
-    app.run(**dict(werkzeug_settings), debug=True)
+    app.run(**dict(werkzeug_settings))
