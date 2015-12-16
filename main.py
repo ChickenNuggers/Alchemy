@@ -48,15 +48,6 @@ if 'whitelist' in config.keys():
     _whitelist = []
     for ip in config['whitelist']:
         _whitelist.append(re.compile(re.escape(ip)))
-    @app.before_request
-    def whitelist():
-        is_allowed = False
-        for pattern in _whitelist:
-            if pattern.match(flask.request.remote_addr):
-                is_allowed = True
-        if not is_allowed:
-            print('Unallowed user: ' + flask.request.remote_addr)
-            flask.abort(403)
 
 @app.errorhandler(403)
 def access_error(e):
@@ -67,6 +58,13 @@ def access_error(e):
 
 @app.route("/")
 def master():
+    is_allowed = False
+    for pattern in _whitelist:
+        if pattern.match(flask.request.remote_addr):
+            is_allowed = True
+    if not is_allowed:
+        print('Unallowed user: ' + flask.request.remote_addr)
+        flask.abort(403)
     elements = {
         "settings": {
             "title": "Alchemy"

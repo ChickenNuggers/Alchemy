@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.blue-pink.min.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+
+		<script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<link rel="stylesheet" href="/static/main.css">
+		<title>{% block title %}{{ settings.title }}{% endblock %}</title>
+	</head>
+	<body>
+		<div class="mdl-layout mdl-js-layout mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+			<header class="mdl-layout__header mdl-layout__header--scroll">
+				<div class="mdl-layout__header-row">
+					<span class="mdl-layout-title">{{ settings.title }} // Dashboard</span>
+				</div>
+			</header>
+			<main class="mdl-layout__content">
+				<div class="mdl-grid">
+					{% block body %}{% endblock %}
+				</div>
+			</main>
+			<footer class="mdl-mini-footer">
+				<div class="mdl-mini-footer__left-section">
+					<div class="mdl-logo">
+						Copyright &copy; 2015 // ChickenNuggers
+					</div>
+					<ul class="mdl-mini-footer__link-list">
+						<li><a href="https://github.com/ChickenNuggers/Alchemy">Source</a></li>
+						<li><a href="https://chickennuggers.github.io/Alchemy">Website</a></li>
+					</ul>
+				</div>
+			</footer>
+		</div>
+	</body>
+</html>
