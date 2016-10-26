@@ -14,7 +14,7 @@ except ImportError:
 with open("config.json") as conffile:
     config = json.loads(conffile.read())
 
-for item in [item for item in sys.argv if item[0] == "-"]:
+for item in (item for item in sys.argv if item[0] == "-"):
     if "=" in item:
         groups = re.match('^(.+)=(.+)$', item[1:]).groups()
         try:
@@ -25,7 +25,8 @@ for item in [item for item in sys.argv if item[0] == "-"]:
         config[item[1:]] = True
 
 if posix.getuid() != 0 and config.get('escalate'):
-    posix.execv('/usr/bin/sudo', ['/usr/bin/sudo', '/usr/bin/env', 'python', sys.argv[0]])
+    posix.execv('/usr/bin/sudo',
+                ['/usr/bin/sudo', '/usr/bin/env', 'python', sys.argv[0]])
 
 if posix.getuid() == 0:
     su = True
@@ -37,12 +38,16 @@ app = flask.Flask(__name__)
 app.jinja_env.autoescape = False
 
 import modules
-_module_list = sorted([item[:-3] for item in os.listdir('modules') if item[-3:] == ".py"])
+_module_list = sorted(
+    [item[:-3] for item in os.listdir('modules') if item[-3:] == ".py"])
 # use .py.disabled to disable a module
 for module in _module_list:
     if module[0] != "." and module[0] != "_":
         __import__('modules.' + module, globals(), locals())
-enabled_modules = [getattr(modules, module) for module in _module_list if getattr(getattr(modules, module), "render")]
+enabled_modules = [
+    getattr(modules, module) for module in _module_list
+    if getattr(getattr(modules, module), "render")
+]
 
 _module_pattern = re.compile(r'modules\.(.+)')
 
@@ -51,12 +56,18 @@ if 'whitelist' in config.keys():
     for ip in config['whitelist']:
         _whitelist.append(re.compile(re.escape(ip)))
 
+
 @app.errorhandler(403)
 def access_error(e):
     try:
-        return flask.render_template('error.html', error = 403, message = 'Access denied', reason = 'Non-whitelisted IP address'), 403
+        return flask.render_template(
+            'error.html',
+            error=403,
+            message='Access denied',
+            reason='Non-whitelisted IP address'), 403
     except Exception as e:
         print(e)
+
 
 @app.route("/")
 def master():
@@ -76,11 +87,14 @@ def master():
         "module_data": collections.OrderedDict()
     }
     for module in enabled_modules:
-        elements['module_data'][_module_pattern.match(module.__name__).group(1).capitalize()] = module.render()
+        elements['module_data'][_module_pattern.match(module.__name__).group(1)
+                                .capitalize()] = module.render()
     return flask.render_template("index.html", **elements)
 
-_acceptable_settings = ['host', 'port', 'use_reloader']
+
+_acceptable_settings = ('host', 'port', 'use_reloader')
 
 if __name__ == "__main__":
-    werkzeug_settings = [(key, value) for key, value in config.items() if key in _acceptable_settings]
+    werkzeug_settings = [(key, value) for key, value in config.items()
+                         if key in _acceptable_settings]
     app.run(**dict(werkzeug_settings))
