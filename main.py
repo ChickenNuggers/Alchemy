@@ -46,7 +46,7 @@ for module in _module_list:
         __import__('modules.' + module, globals(), locals())
 enabled_modules = [
     getattr(modules, module) for module in _module_list
-    if getattr(getattr(modules, module), "render")
+    if hasattr(getattr(modules, module), "render")
 ]
 
 if 'whitelist' in config.keys():
