@@ -49,6 +49,10 @@ enabled_modules = [
     if hasattr(getattr(modules, module), "render")
 ]
 
+for module in enabled_modules:
+    if hasattr(module, "init"):
+        module.init(app)
+
 if 'whitelist' in config.keys():
     _whitelist = []
     for ip in config['whitelist']:
