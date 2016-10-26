@@ -6,6 +6,7 @@ try:
     import re
     import posix
     import sys
+    import collections
 except ImportError:
     print("Did you remember to run `pip install -r requirements.txt`?")
     raise SystemExit
@@ -36,7 +37,8 @@ app = flask.Flask(__name__)
 app.jinja_env.autoescape = False
 
 import modules
-_module_list = sorted([item[:-3] for item in os.listdir('modules') if item[0] != "." and item[0] != "_"])
+_module_list = sorted([item[:-3] for item in os.listdir('modules') if item[-3:] == ".py"])
+# use .py.disabled to disable a module
 for module in _module_list:
     if module[0] != "." and module[0] != "_":
         __import__('modules.' + module, globals(), locals())
@@ -71,7 +73,7 @@ def master():
         },
         "su": su,
         "nowarn": config.get('nowarn') or False,
-        "module_data": {}
+        "module_data": collections.OrderedDict()
     }
     for module in enabled_modules:
         elements['module_data'][_module_pattern.match(module.__name__).group(1).capitalize()] = module.render()
