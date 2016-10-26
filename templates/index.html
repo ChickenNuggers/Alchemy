@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE HTML><!-- vim:set noet sts=0 sw=4 ts=4: -->
 <html lang="en">
 	<head>
 		<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.blue-pink.min.css">
@@ -20,23 +20,38 @@
 			<main class="mdl-layout__content">
 				<div class="mdl-grid">
 					<div class="mdl-cell mdl-cell--12-col">
-						{% if not su and not nowarn %}
 						<div class="mdl-card mdl-shadow--2dp">
-							<p>Alchemy is not running as superuser. Unless
-							specified in config.json with a boolean for a
-							field "escalate", Alchemy will not attempt to
-							escalate to superuser. This means that some of
-							the modules might be missing data. <b>To remove
-							this message, either run Alchemy as a superuser
-							or enable the "nowarn" config option.</b></p>
+							<div class="mdl-card__supporting-text mdl-card--expand">
+							{% if not su and not nowarn %}<p>
+								Alchemy is not running as superuser. Unless
+								specified in config.json with a boolean for a
+								field "escalate", Alchemy will not attempt to
+								escalate to superuser. This means that some of
+								the modules might be missing data. <b>To remove
+								this message, either run Alchemy as a superuser
+								or enable the "nowarn" config option.</b>
+							</p>{% endif %}
+							<p>
+								Alchemy is a program that provides a web-based
+								interface for viewing information from your
+								computer. The program itself was written in
+								2015 as a proof-of-concept software example for
+								a project. The program is run on Python and as
+								of October 2016 is only compatible with POSIX
+								compatible systems. The source is available on
+								GitHub and is open for pull requests.
+							</p></div>
+							<div class="mdl-card__actions mdl-card--border">
+								<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored"
+									href="https://github.com/ChickenNuggers/Alchemy">Source</a>
+							</div>
 						</div>
-						{% endif %}
 						{% for module, content in module_data.items() %}
 						<div class="mdl-card mdl-shadow--2dp">
 							<div class="mdl-card__title">
 								<h3 class="mdl-card__title-text">{{ module }}</h3>
 							</div>
-							<div class="mdl-card__supporting-text">
+							<div class="mdl-card__supporting-text mdl-card--expand">
 								{{content.main}}
 							</div>
 							{% if content.has_actions %}

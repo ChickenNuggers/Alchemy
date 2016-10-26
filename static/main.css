@@ -6,7 +6,10 @@ h4[role="label"] {
 .mdl-card {
 	margin-top: 20px;
 	margin-bottom: 20px;
-	min-height: 0px;
+}
+.mdl-card__actions {
+	-webkit-display: flex;
+	display: flex;
 }
 
 table {
