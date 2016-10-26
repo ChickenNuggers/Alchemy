@@ -95,7 +95,6 @@ def master():
         if hasattr(module, "render_actions"):
             elements['module_data'][name]['has_actions'] = True
             elements['module_data'][name]['actions'] = module.render_actions()
-            print(module.render_actions())
     return flask.render_template("index.html", **elements)
 
 
