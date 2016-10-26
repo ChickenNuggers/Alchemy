@@ -15,7 +15,6 @@ table {
 
 .mdl-card {
 	width: 100%;
-	padding: 15px;
 }
 
 .mdl-grid {
@@ -34,6 +33,7 @@ table {
 	width: 100%;
 	height: 37.5%;
 	flex-shrink: 0;
+	box-shadow: none;
 }
 
 fieldset {
@@ -50,8 +50,7 @@ p {
 	text-align: justify;
 }
 
-p[role="code"] {
-	line-height: 1.1;
-	padding: 5px;
-	background-color: #eee;
+pre {
+	line-height: 1.3;
+	padding: 12px;
 }

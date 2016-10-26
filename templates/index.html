@@ -31,14 +31,19 @@
 							or enable the "nowarn" config option.</b></p>
 						</div>
 						{% endif %}
-						{% for module, template in module_data.items() %}
+						{% for module, content in module_data.items() %}
 						<div class="mdl-card mdl-shadow--2dp">
 							<div class="mdl-card__title">
 								<h3 class="mdl-card__title-text">{{ module }}</h3>
 							</div>
 							<div class="mdl-card__supporting-text">
-								{{template}}
+								{{content.main}}
 							</div>
+							{% if content.has_actions %}
+							<div class="mdl-card__actions mdl-card--border">
+								{{content.actions}}
+							</div>
+							{% endif %}
 						</div>
 						{% endfor %}
 					</div>

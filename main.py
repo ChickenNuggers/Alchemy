@@ -49,8 +49,6 @@ enabled_modules = [
     if getattr(getattr(modules, module), "render")
 ]
 
-_module_pattern = re.compile(r'modules\.(.+)')
-
 if 'whitelist' in config.keys():
     _whitelist = []
     for ip in config['whitelist']:
@@ -68,6 +66,7 @@ def access_error(e):
     except Exception as e:
         print(e)
 
+_module_pattern = re.compile(r'modules\.(.+)')
 
 @app.route("/")
 def master():
@@ -87,8 +86,12 @@ def master():
         "module_data": collections.OrderedDict()
     }
     for module in enabled_modules:
-        elements['module_data'][_module_pattern.match(module.__name__).group(1)
-                                .capitalize()] = module.render()
+        name = _module_pattern.match(module.__name__).group(1).capitalize()
+        elements['module_data'][name] = {'main': module.render()}
+        if hasattr(module, "render_actions"):
+            elements['module_data'][name]['has_actions'] = True
+            elements['module_data'][name]['actions'] = module.render_actions()
+            print(module.render_actions())
     return flask.render_template("index.html", **elements)
 
 
