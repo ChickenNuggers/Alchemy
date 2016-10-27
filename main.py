@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 try:
+    import alchemy
     import flask
     import json
     import os
-    import re
     import posix
+    import re
     import sys
     import collections
 except ImportError:
@@ -34,8 +35,13 @@ else:
     print(" * No sudo permissions")
     su = False
 
-app = flask.Flask(__name__)
+app = alchemy.app
 app.jinja_env.autoescape = False
+
+# does not actually add a filter?
+#def idsafe(input):
+#    return input.lower().replace(" ", "_")
+#app.jinja_env.filters['idsafe'] = idsafe
 
 import modules
 _module_list = sorted(

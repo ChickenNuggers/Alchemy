@@ -1,6 +1,8 @@
-<p>
+<p><!-- vim:set noet sts=0 sw=4 ts=4: -->
 Introductory module with a short description of what the module does, along with an example module that displays processor usage and memory usage.
 </p>
+
+<script type="text/javascript" charset="utf-8" src="/static/example.js"></script>
 
 <style>
 iframe {
@@ -11,8 +13,9 @@ iframe {
 }
 </style>
 
-{% for label, value in data.items() %}
-<h4 role="label">{{ label }}: {{ value }}%</h4>
+{% for valueset in data %}
+<h4 role="label"><span>{{ valueset.label }}: </span>
+	<span id="content-{{valueset.label_safe}}">{{ valueset.value }}%</h4>
 <div class="mdl-progress mdl-progress__progress-accent">
 	<style>
 .mdl-progress {
@@ -20,7 +23,8 @@ iframe {
 }
 	</style>
 	<div class="mdl-progress mdl-js-progress">
-		<div class="progressbar bar bar1" style="width: {{ value }}%;"></div>
+		<div class="progressbar bar bar1" id="{{ valueset.label_safe }}"
+			style="width: {{ valueset.value }}%;"></div>
 		<div class="bufferbar bar bar2" style="width: 100%;"></div>
 	</div>
 </div>
