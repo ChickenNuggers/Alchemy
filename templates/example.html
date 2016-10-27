@@ -1,26 +1,37 @@
 <p><!-- vim:set noet sts=0 sw=4 ts=4: -->
-Introductory module with a short description of what the module does, along with an example module that displays processor usage and memory usage.
+Introductory module with a short description of what the module does, along
+with an example module that displays processor usage and memory usage. The
+module will automatically reload information every <span class="TODO">5</span>
+seconds.
+</p>
+<style type="text/css">
+	#ex-has-fail {
+		color: red;
+		display: none;
+	}
+</style>
+<p id="ex-has-fail">
+The automatic reloading mechanism is currently not working. Please make sure
+that Alchemy is running on your computer. If it is, please obtain logs and
+submit an issue on GitHub. If you have restarted Alchemy, please make sure to
+<b>push the &quot;Refresh&quot; button</b> for the failed elements.
 </p>
 
-<script type="text/javascript" charset="utf-8" src="/static/example.js"></script>
+<div id="ex-snackbar" class="mdl-js-snackbar mdl-snackbar">
+	<div class="mdl-snackbar__text"></div>
+	<button class="mdl-snackbar__action" type="button"></button>
+</div>
 
-<style>
-iframe {
-	overflow: hidden;
-	overflow-x: hidden;
-	overflow-y: hidden;
-	width: 100%;
-}
-</style>
+<script type="text/javascript" charset="utf-8" src="/static/example.js"></script>
 
 {% for valueset in data %}
 <h4 role="label"><span>{{ valueset.label }}: </span>
 	<span id="content-{{valueset.label_safe}}">{{ valueset.value }}%</h4>
 <div class="mdl-progress mdl-progress__progress-accent">
 	<style>
-.mdl-progress {
-	width: 100%;
-}
+		.mdl-progress {
+			width: 100%;
+		}
 	</style>
 	<div class="mdl-progress mdl-js-progress">
 		<div class="progressbar bar bar1" id="{{ valueset.label_safe }}"
