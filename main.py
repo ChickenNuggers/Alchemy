@@ -103,10 +103,7 @@ def master():
             elements['module_data'][name]['actions'] = module.render_actions()
     return flask.render_template("index.html", **elements)
 
-
-_acceptable_settings = ('host', 'port', 'use_reloader')
-
-if __name__ == "__main__":
-    werkzeug_settings = [(key, value) for key, value in config.items()
-                         if key in _acceptable_settings]
-    app.run(**dict(werkzeug_settings))
+alchemy.alchemy_server.construct()
+_acceptable_settings = ('host', 'port')
+alchemy.alchemy_server.serve(**dict((key, value) for key, value in config.items()
+    if key in _acceptable_settings))
