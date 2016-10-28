@@ -1,7 +1,6 @@
 import json
 import sys
-import posix
-
+import os
 
 def get_config():
     config = {}
@@ -18,7 +17,7 @@ def get_config():
         else:
             config[item[1:]] = True
 
-    if posix.getuid() != 0 and config.get('escalate'):
-        posix.execv('/usr/bin/sudo',
+    if os.getuid() != 0 and config.get('escalate'):
+        os.execv('/usr/bin/sudo',
                     ['/usr/bin/sudo', '/usr/bin/env', 'python', sys.argv[0]])
     return config

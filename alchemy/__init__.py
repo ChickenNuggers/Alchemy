@@ -3,7 +3,6 @@ import alchemy.config
 import collections
 import jinja2
 import modules
-import posix
 import re
 import os
 from tornado.wsgi import WSGIContainer
@@ -66,7 +65,7 @@ class AlchemyMainPage(RequestHandler):
             "settings": {
                 "title": "Alchemy"
             },
-            "su": posix.getuid() == 0,
+            "su": os.getuid() == 0,
             "nowarn": _config.get('nowarn') or False,
             "module_data": collections.OrderedDict()
         }

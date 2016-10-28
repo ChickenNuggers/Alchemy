@@ -4,7 +4,7 @@ try:
     import alchemy.config
     import alchemy.template
     import modules
-    import posix
+    import os
 except ImportError as e:
     import sys
     import traceback
@@ -14,7 +14,7 @@ except ImportError as e:
 
 config = alchemy.config.get_config()
 
-if posix.getuid() != 0:
+if os.getuid() != 0:
     print(" * No sudo permissions")
 
 # does not actually add a filter?
