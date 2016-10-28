@@ -2,7 +2,6 @@
 try:
     import hurricane
     import hurricane.config
-    import hurricane.template
     import modules
     import os
 except ImportError as e:

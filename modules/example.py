@@ -3,7 +3,7 @@ import collections
 import jinja2
 import json
 import psutil
-from tornado.gen import sleep
+from tornado.gen import sleep, coroutine
 from tornado.websocket import WebSocketHandler
 
 psutil.cpu_percent()  # Initialize percent calculator
@@ -36,6 +36,7 @@ def render_actions():
         return jinja2.Template(template.read()).render()
 
 class ExampleWebsocket(WebSocketHandler):
+    @coroutine
     def open(self):
         while True:
             yield sleep(5)
