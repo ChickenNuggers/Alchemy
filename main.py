@@ -14,11 +14,8 @@ except ImportError as e:
 
 config = alchemy.config.get_config()
 
-if posix.getuid() == 0:
-    su = True
-else:
+if posix.getuid() != 0:
     print(" * No sudo permissions")
-    su = False
 
 # does not actually add a filter?
 #def idsafe(input):
