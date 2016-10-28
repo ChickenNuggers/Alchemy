@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 try:
-    import alchemy
-    import alchemy.config
-    import alchemy.template
+    import hurricane
+    import hurricane.config
+    import hurricane.template
     import modules
     import os
 except ImportError as e:
@@ -12,7 +12,7 @@ except ImportError as e:
     traceback.print_exc(file=sys.stdout)
     raise SystemExit
 
-config = alchemy.config.get_config()
+config = hurricane.config.get_config()
 
 if os.getuid() != 0:
     print(" * No sudo permissions")
@@ -22,8 +22,8 @@ if os.getuid() != 0:
 #    return input.lower().replace(" ", "_")
 #app.jinja_env.filters['idsafe'] = idsafe
 
-alchemy.alchemy_server.construct()
+hurricane.hurricane_server.construct()
 _acceptable_settings = ('host', 'port')
-alchemy.alchemy_server.serve(**dict((key, value)
+hurricane.hurricane_server.serve(**dict((key, value)
                                     for key, value in config.items()
                                     if key in _acceptable_settings))

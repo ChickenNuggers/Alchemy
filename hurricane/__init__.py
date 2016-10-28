@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import alchemy.config
+import hurricane.config
 import collections
 import jinja2
 import modules
@@ -9,10 +9,10 @@ from tornado.wsgi import WSGIContainer
 from tornado.web import Application, RequestHandler
 from tornado.ioloop import IOLoop
 
-_config = alchemy.config.get_config()
+_config = hurricane.config.get_config()
 
 
-class AlchemyServer:
+class HurricaneServer:
 
     def __init__(self, websockets=[], request_handlers=[]):
         self._request_handlers = request_handlers
@@ -42,7 +42,7 @@ if 'whitelist' in _config.keys():
     _whitelist = [re.compile(re.escape(ip)) for ip in _config['whitelist']]
 
 
-class AlchemyMainPage(RequestHandler):
+class HurricaneMainPage(RequestHandler):
     _module_pattern = re.compile(r'modules\.(.+)')
 
     def get(self):
@@ -63,7 +63,7 @@ class AlchemyMainPage(RequestHandler):
                             reason='Non-whitelisted IP address'))
         elements = {
             "settings": {
-                "title": "Alchemy"
+                "title": "Hurricane"
             },
             "su": os.getuid() == 0,
             "nowarn": _config.get('nowarn') or False,
@@ -81,9 +81,9 @@ class AlchemyMainPage(RequestHandler):
             self.write(jinja2.Template(template.read()).render(**elements))
 
 
-alchemy_server = AlchemyServer()
-alchemy_server.add_request_handler(r"/", AlchemyMainPage)
-alchemy_server.add_request_handler(r"/index", AlchemyMainPage)
+hurricane_server = HurricaneServer()
+hurricane_server.add_request_handler(r"/", HurricaneMainPage)
+hurricane_server.add_request_handler(r"/index", HurricaneMainPage)
 
 for module in modules.enabled_modules:
     if hasattr(module, 'init'):

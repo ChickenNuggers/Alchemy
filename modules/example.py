@@ -1,4 +1,4 @@
-import alchemy
+import hurricane
 import collections
 import jinja2
 import json
@@ -48,4 +48,4 @@ class ExampleWebsocket(WebSocketHandler):
         pass
 
 def init():
-    alchemy.alchemy_server.add_websocket_handler("/example", ExampleWebsocket)
+    hurricane.hurricane_server.add_websocket_handler("/example", ExampleWebsocket)
