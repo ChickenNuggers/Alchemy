@@ -22,16 +22,16 @@
 						<div class="mdl-card mdl-shadow--2dp">
 							<div class="mdl-card__supporting-text mdl-card--expand">
 							{% if not su and not nowarn %}<p>
-								Alchemy is not running as superuser. Unless
+								Hurricane is not running as superuser. Unless
 								specified in config.json with a boolean for a
-								field "escalate", Alchemy will not attempt to
+								field "escalate", Hurricane will not attempt to
 								escalate to superuser. This means that some of
 								the modules might be missing data. <b>To remove
-								this message, either run Alchemy as a superuser
+								this message, either run Hurricane as a superuser
 								or enable the "nowarn" config option.</b>
 							</p>{% endif %}
 							<p>
-								Alchemy is a program that provides a web-based
+								Hurricane is a program that provides a web-based
 								interface for viewing information from your
 								computer. The program itself was written in
 								2015 as a proof-of-concept software example for
@@ -45,7 +45,7 @@
 									onclick="window.location.reload();">Reload</button>
 								<div class="mdl-layout-spacer"></div>
 								<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored"
-									href="https://github.com/ChickenNuggers/Alchemy">Source</a>
+									href="https://github.com/ChickenNuggers/Hurricane">Source</a>
 							</div>
 						</div>
 						{% for module, content in module_data.items() %}

@@ -39,8 +39,8 @@ class ExampleWebsocket(WebSocketHandler):
     @coroutine
     def open(self):
         while True:
-            yield sleep(5)
             self.write_message(json.dumps(_getnums()))
+            yield sleep(5)
 
     def on_message(self, message):
         pass
