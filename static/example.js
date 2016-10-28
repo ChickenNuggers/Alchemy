@@ -1,20 +1,5 @@
 "use strict";
 var snackbarContainer = document.querySelector("#ex-snackbar");
-let ws = new WebSocket('ws://' + window.location.host + '/example');
-
-ws.onmessage = function(message) {
-	data = JSON.parse(message.data);
-	for (key in data) {
-		$("#" + data[key].label_safe).css(
-			'width', data[key].value + "%");
-		$("#content-" + data[key].label_safe).html(
-			data[key].value + "%");
-		if ($("#ex-has-fail").css("display") == "block") {
-			$("#ex-has-fail").css("display", "none");
-		}
-	}
-}
-
 function fail() {
 	$("#ex-has-fail").css("display", "block");
 	snackbarContainer.MaterialSnackbar.showSnackbar({
@@ -25,5 +10,26 @@ function fail() {
 	});
 }
 
-ws.onerror = fail;
-ws.onclose = fail;
+let ws; // linger
+
+function ex_refresh() {
+	ws = new WebSocket('ws://' + window.location.host + '/example');
+
+	ws.onmessage = function(message) {
+		var data = typeof message.data == 'object' && message.data || JSON.parse(message.data)
+		for (var key in data) {
+			$("#" + data[key].label_safe).css(
+				'width', data[key].value + "%");
+			$("#content-" + data[key].label_safe).html(
+				data[key].value + "%");
+			if ($("#ex-has-fail").css("display") == "block") {
+				$("#ex-has-fail").css("display", "none");
+			}
+		}
+	}
+
+	ws.onerror = fail;
+	ws.onclose = fail;
+}
+
+ex_refresh()
