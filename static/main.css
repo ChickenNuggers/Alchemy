@@ -21,7 +21,8 @@ table {
 }
 
 .mdl-grid {
-	width: 75%;
+	width: 1000px;
+	max-width: 65%;
 }
 
 .mdl-layout__header {
