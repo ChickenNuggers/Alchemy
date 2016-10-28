@@ -1,9 +1,23 @@
-let interval; // vim:set noet sts=0 sw=4 ts=4:
-var snackbarContainer = document.querySelector("#ex-snackbar")
+"use strict";
+var snackbarContainer = document.querySelector("#ex-snackbar");
+function fail() {
+	$("#ex-has-fail").css("display", "block");
+	snackbarContainer.MaterialSnackbar.showSnackbar({
+		message: "Unable to connect for module: example",
+		timeout: 5000,
+		actionHandler: (()=> window.location.reload()),
+		actionText: "Reload"
+	});
+}
 
-function make_it_do_thing() {
-	$.getJSON("/example").then( (data)=> {
-		for (key in data) {
+let ws; // linger
+
+function ex_refresh() {
+	ws = new WebSocket('ws://' + window.location.host + '/example');
+
+	ws.onmessage = function(message) {
+		var data = typeof message.data == 'object' && message.data || JSON.parse(message.data)
+		for (var key in data) {
 			$("#" + data[key].label_safe).css(
 				'width', data[key].value + "%");
 			$("#content-" + data[key].label_safe).html(
@@ -12,21 +26,10 @@ function make_it_do_thing() {
 				$("#ex-has-fail").css("display", "none");
 			}
 		}
-	}).fail(()=>{
-		clearInterval(interval);
-		$("#ex-has-fail").css("display", "block");
-		snackbarContainer.MaterialSnackbar.showSnackbar({
-			message: "Unable to connect for module: example",
-			timeout: 5000,
-			actionHandler: (()=> window.location.reload()),
-			actionText: "Reload"
-		});
-	});
+	}
+
+	ws.onerror = fail;
+	ws.onclose = fail;
 }
 
-var ex_refresh = ()=> {
-	interval = setInterval(make_it_do_thing, 5000);
-	make_it_do_thing();
-}
-
-ex_refresh();
+ex_refresh()

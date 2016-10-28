@@ -1,10 +1,13 @@
-from alchemy import app
+import hurricane
 import collections
-import flask
 import jinja2
+import json
 import psutil
+from tornado.gen import sleep, coroutine
+from tornado.websocket import WebSocketHandler
 
-psutil.cpu_percent() # Initialize percent calculator
+psutil.cpu_percent()  # Initialize percent calculator
+
 
 def _getnums():
     numbers = []
@@ -21,15 +24,29 @@ def _getnums():
 
     return numbers
 
+
 def render():
     numbers = _getnums()
     with open('templates/example.html') as template:
         return jinja2.Template(template.read()).render(data=numbers)
 
+
 def render_actions():
     with open('templates/example-actions.html') as template:
         return jinja2.Template(template.read()).render()
 
-@app.route("/example")
-def render_json_stats():
-    return flask.jsonify(*_getnums())
+class ExampleWebsocket(WebSocketHandler):
+    @coroutine
+    def open(self):
+        while True:
+            yield sleep(5)
+            self.write_message(json.dumps(_getnums()))
+
+    def on_message(self, message):
+        pass
+
+    def on_close(self):
+        pass
+
+def init():
+    hurricane.hurricane_server.add_websocket_handler("/example", ExampleWebsocket)
