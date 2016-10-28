@@ -1,7 +1,10 @@
 import alchemy
 import collections
 import jinja2
+import json
 import psutil
+from tornado.gen import sleep
+from tornado.websocket import WebSocketHandler
 
 psutil.cpu_percent()  # Initialize percent calculator
 
@@ -32,7 +35,17 @@ def render_actions():
     with open('templates/example-actions.html') as template:
         return jinja2.Template(template.read()).render()
 
+class ExampleWebsocket(WebSocketHandler):
+    def open(self):
+        while True:
+            yield sleep(5)
+            self.write_message(json.dumps(_getnums()))
 
-#@app.route("/example")
-#def render_json_stats():
-#    return flask.jsonify(*_getnums())
+    def on_message(self, message):
+        pass
+
+    def on_close(self):
+        pass
+
+def init():
+    alchemy.alchemy_server.add_websocket_handler("/example", ExampleWebsocket)

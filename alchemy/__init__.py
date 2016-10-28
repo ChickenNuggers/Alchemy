@@ -8,7 +8,6 @@ import re
 import os
 from tornado.wsgi import WSGIContainer
 from tornado.web import Application, RequestHandler
-from tornado.websocket import WebSocketHandler
 from tornado.ioloop import IOLoop
 
 _config = alchemy.config.get_config()
@@ -48,7 +47,6 @@ class AlchemyMainPage(RequestHandler):
     _module_pattern = re.compile(r'modules\.(.+)')
 
     def get(self):
-        print(repr(self.request))
         is_allowed = False
         if 'whitelist' in _config.keys():
             for pattern in _whitelist:
@@ -87,3 +85,7 @@ class AlchemyMainPage(RequestHandler):
 alchemy_server = AlchemyServer()
 alchemy_server.add_request_handler(r"/", AlchemyMainPage)
 alchemy_server.add_request_handler(r"/index", AlchemyMainPage)
+
+for module in modules.enabled_modules:
+    if hasattr(module, 'init'):
+        module.init()
